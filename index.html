@@ -48,11 +48,11 @@
     <div class="col-md-6" ng-controller='AlreadyBoughtController as boughtCntroller'>
      <h2>Already Bought:</h2>
      <ul>
-       <li ng-repeat ="item in boughtCntroller.boughtItems">
+       <li ng-repeat ="item in boughtCntroller.getboughtItems()">
          Bought {{ item.quantity }}  {{ item.name }}
        </li>
      </ul>
-     <div   class="emptyMessage">{{boughtCntroller.message}}</div>
+     <div  ng-if="boughtCntroller.message" class="emptyMessage">{{boughtCntroller.message}}</div>
     </div>
   </div>
 </div>

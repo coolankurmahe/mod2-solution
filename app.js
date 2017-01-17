@@ -13,7 +13,7 @@ function ToBuyController(ShoppingListCheckOffService) {
   var toBuyCntroller = this;
 
   toBuyCntroller.tobuyItems = ShoppingListCheckOffService.gettoBuyItems();
-
+  toBuyCntroller.message = "";
 
   toBuyCntroller.buyItem = function (itemIndex) {
 
@@ -22,7 +22,9 @@ function ToBuyController(ShoppingListCheckOffService) {
     var buylen = ShoppingListCheckOffService.gettoBuyLength();
 
     if(buylen == 0)
-    toBuyCntroller.message = "Everything is bought!";
+    {
+      toBuyCntroller.message = "Everything is bought!";
+    }
   }
 }
 
@@ -30,14 +32,19 @@ function ToBuyController(ShoppingListCheckOffService) {
 AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
 function AlreadyBoughtController(ShoppingListCheckOffService) {
   var boughtCntroller = this;
-  var boughtItems;
+  var boughtlen = 0;
   boughtCntroller.message = "Nothing bought yet.";
-  boughtCntroller.boughtItems = ShoppingListCheckOffService.getBoughtItems();
-  var boughtlen =ShoppingListCheckOffService.getBoughtLength();
 
-  if(boughtlen != 0)
-  boughtCntroller.message = "";
+  boughtCntroller.getboughtItems = function () {
+    var boughtlen =ShoppingListCheckOffService.getBoughtLength();
+    if(boughtlen >= 1)
+    {
 
+      boughtCntroller.message = "";
+    }
+    return ShoppingListCheckOffService.getBoughtItems();
+
+  }
 
 }
 
